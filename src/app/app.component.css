@@ -1,0 +1,198 @@
+.divborderstyle {
+    height: 800px; 
+    /* border-style: solid;
+    border-color: #666666; */
+}
+
+.divhead {
+    background-color: #DEDEDE;
+    border-style: solid;
+    border-color: #666666;
+}
+
+.divbody {
+    background-color: #FAFAFA;
+    height : 100%;
+    border-style: solid;
+    border-color: #666666;
+}
+
+.divhead label {
+    font-size: 15px;
+    margin: 10px;
+}
+
+.divbluebox {
+    background-color: #33b5e5;
+    box-shadow: 2px 2px 2px #A9AAAB;
+    text-align: center;
+}
+h2 {
+    margin-top : 10px;
+    font-size : 20px;
+}
+
+.circle {
+    width : 30px;
+    font-size : 15px;
+    font-weight: bold;
+    height : 30px;
+    line-height: 5px;
+    border-radius: 50px;
+    float : right;
+    margin : 5px;
+    border : 2px solid #FFFFFF;
+    box-shadow : 3px 3px 3px #888888;
+    text-align: center;
+    vertical-align: middle;
+    outline : none;
+}
+
+.tablestyle {
+    margin-top: 20px !important;
+    margin-left: 0px !important;
+    margin : 10px;
+    text-align: center;
+    width : 100%;
+}
+
+.smallsize {
+    width : 30px;
+    height: 30px;
+}
+
+.btn {
+    padding: 0;
+    outline: none;
+}
+
+.btn:active {
+    outline: none;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.button_text{
+    margin-left: 1.5px;
+    margin-top: 4px;
+}
+
+table {
+    table-layout: auto !important;
+}
+.highlight{
+    background: #42A948; /* green */
+    
+}
+.hover:hover{
+    background-color: grey;
+}
+/*For Material Table */
+.filelist-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+
+  .analysislist-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+  }
+
+  .mat-header-cell.mat-sort-header-sorted {
+    color: black;
+  }
+  /*End of Material Table */
+
+/* For Search Box */
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}

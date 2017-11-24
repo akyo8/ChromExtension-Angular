@@ -1,0 +1,234 @@
+<div class = "container-fluid" style = "margin: 10px">
+  <div class = "row" style = "margin-bottom: 7px;display:-webkit-box;">
+    <!-- <input type = "image" src = "../assets/database-symbol.orange.svg" style = "outline:none; width: 91px; height:99px"/> -->
+    <img src = "../assets/Nexico.300.png"/>
+    <!-- <h1 style = "font-size: 90px;color:black;margin-bottom:0px;">Nexico</h1> -->
+  </div>
+  <div class = "row">
+      <div class = "col-sm-3 divborderstyle">
+
+          <div class = "row divhead">
+              <label > Corpora </label>
+              <button type="button" class="btn btn-danger circle">
+                  <!-- <span class="button_text">T</span> -->
+                  <i class="glyphicon glyphicon-arrow-right" style ="margin-bottom: 0.5px; margin-left: 0.5px;"></i>
+              </button>
+
+              <button type="button" class="btn btn-danger circle">
+                  <!-- <span class="button_text">F</span> -->
+                  <i class = "glyphicon glyphicon-resize-small"></i>
+              </button>
+
+              <button type="button" class="btn btn-danger circle">
+                  <span>D</span>
+              </button>
+
+              <button type="button" class="btn btn-danger circle" (click)="onIndexDbDelete()">
+                      <i class = "glyphicon glyphicon-remove"></i>
+                  <!-- <span class="button_text">-</span> -->
+              </button>
+
+              <ng4-files-click (filesSelect)="filesSelect($event)" class = "btn-primary circle">
+                  <div class="btn" style="width: 100%; height:100%; display: inline-grid;">
+                      <!-- <span class="button_text" style="font-size: 15px">+</span> -->
+                      <i class = "button_text glyphicon glyphicon-plus"></i>
+                </div>
+              </ng4-files-click>
+          </div>
+
+          <div class = "row divbody">
+              <table class = "tablestyle">
+                  <thead>
+                      <tr>
+                          <th class = "col-sm-3"></th>
+                          <th class = "col-sm-3"></th>
+                          <th class = "col-sm-3"></th>
+                          <th class = "col-sm-3"></th>
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                      <tr *ngFor = "let i of indexDbList">
+                          <td *ngFor = "let j of i">
+                              <div class = "row" *ngIf = "selectedIndexDbName != j.dbname">
+                                  <input type = "image" src = "../assets/database-symbol.red.svg" (click) = "onIndexDbClick(j)" style = "outline:none; width: 91px; height:99px"/>
+                                  <!-- <input type = "image" src = "../assets/indexdb.jpg" (click) = "onIndexDbClick(j)" style = "outline:none; width: 91px; height:99px"/> -->
+                              </div>
+                              <div class = "row" *ngIf = "selectedIndexDbName == j.dbname">
+                                  <input type = "image" src = "../assets/database-symbol.orange.svg" style = "outline:none; width: 91px; height:99px"/>
+                                  <!-- <input type = "image" src = "../assets/selectindexdb.jpg" style = "outline:none; width: 91px; height:99px"/> -->
+                              </div>
+                              <div class = "row">
+                                  {{ j.dbname }}
+                                  <!-- {{ j }} -->
+                              </div>
+                          </td>
+                          <!-- <td>
+                              <div class = "row"><input type = "image" src = "../assets/indexdb.jpg" style = "outline:none"/></div>
+                              <div class = "row">corpus 1</div>
+                          </td> -->
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <div class= "col-sm-9 divborderstyle">
+          <!-- <h1> Temporary</h1>
+          <div *ngIf = "flag">
+              <h2>File Selected</h2>
+              <div *ngFor = "let file of selectedFiles">
+                  <img src = "{{ file }}"/>
+              </div>
+          </div> -->
+          <div class = "row" style = "margin-left : 5px;">
+              <div class = "col-sm-11 divbluebox">
+                <h2 *ngIf = "!flag"> IndexDb Not Selected </h2>
+                <h2 *ngIf = "flag"> {{selectedIndexDbName}}: {{indexDbHeader.length}} Pages, {{indexDbHeader.types}} Types, {{indexDbHeader.token}} Tokens, Date: {{indexDbHeader.date}}</h2>
+                <!-- <h2 *ngIf = "flag"> {{selectedIndexDbName}}</h2> -->
+              </div>
+              <div class="col-sm-1" style = "text-align: center">
+                  <span class ="glyphicon glyphicon-cog" style = "font-size : 40px;"></span>
+              </div>
+              
+          </div>
+
+          <div class = "row" style= "height: 780px; margin-top : 20px; margin-left:5px;">
+              <div class = "col-sm-9" style = "height: 100%; background-color : #F4F3F0">
+                  <div class = "row" style = "height : 63%; margin-left: 5px;">
+                    <mat-tab-group>
+                        <mat-tab label="Section Map">
+                            <h1>Some tab content</h1>
+                            <p>...</p>
+                        </mat-tab>
+                        <mat-tab label="Table" style = "height:100%;" matSort="filesort">
+                            <!-- <p-dataTable  [value]="tableStructure" selectionMode="single" [(selection)] = "selectedRow" (onRowSelect) = "onTableRowSelect()" [style]="{'height':'330px'}">
+                                <p-column field="url" header="URL" [style]="{'width':'50%', 'cursor':'pointer'}" ></p-column>
+                                <p-column field="type" header="types" [style]="{'width':'10%', 'cursor':'pointer'}" ></p-column>
+                                <p-column field="token" header="tokens" [style]="{'width':'10%', 'cursor':'pointer'}" ></p-column>
+                                <p-column field="content" header="content" [style]="{'width':'20%', 'cursor':'pointer'}"></p-column>
+                                <p-column field="date" header="date" [style]="{'width':'20%', 'cursor':'pointer'}" ></p-column>
+                            </p-dataTable> -->
+                            <div class="filelist-container mat-elevation-z8">
+                                <mat-table [dataSource]="filedataSource" style = "max-height: 330px;" matSort #filesort = "matSort">
+                              
+                                  <ng-container matColumnDef="url">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style = "max-width: 600px"> URL </mat-header-cell>
+                                    <mat-cell *matCellDef="let element" style = "max-width: 600px"> {{element.url}} </mat-cell>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="type">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style = "max-width: 50px"> types </mat-header-cell>
+                                    <mat-cell *matCellDef="let element" style = "max-width: 50px"> {{element.type}} </mat-cell>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="token">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style = "max-width: 60px"> tokens </mat-header-cell>
+                                    <mat-cell *matCellDef="let element" style = "max-width: 50px"> {{element.token}} </mat-cell>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="content">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style = "max-width: 170px"> content </mat-header-cell>
+                                    <mat-cell *matCellDef="let element" style = "max-width: 170px"> {{element.content}} </mat-cell>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="date">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style = "max-width: 90px"> date </mat-header-cell>
+                                    <mat-cell *matCellDef="let element" style = "max-width: 100px"> {{element.date}} </mat-cell>
+                                  </ng-container>
+                              
+                                  <mat-header-row *matHeaderRowDef="displayedColumns" style = "cursor:pointer;"></mat-header-row>
+                                  <mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "onTableRowSelect(row)" [ngClass] = "{'highlight': selectedRow == row, 'hover':true}" style = "cursor:pointer;"></mat-row>
+                                </mat-table>
+                              </div>
+                                <div class = "row" style = "margin-top: 10px;">
+                                        <div class = "col-sm-8">
+                                            <div class="icon-addon addon-sm" style = "width: 200px">
+                                                <input type="text" placeholder="Search Terms" class="form-control" id="searchterm">
+                                                <label for="searchterm" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+                                            </div>
+                                        </div>
+                                        <div class = "col-sm-4">
+                                            <button mat-raised-button style = "height:30px; width: 150px;">Delete Selected</button>
+                                            <button mat-raised-button style = "height:30px; width: 150px;">Delete Others</button>
+                                        </div>
+                                </div>
+                
+                                <div class = "row" style = "margin-top: 10px">
+                                        <div class = "col-sm-3">
+                                            <div class="icon-addon addon-sm" style = "width: 200px">
+                                                <input type="text" placeholder="Replacement" class="form-control" id="replacement">
+                                                <label for="replacement" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
+                                            </div>
+                                        </div>
+                                        <div class = "col-sm-9">
+                                            <button mat-raised-button style = "height:30px; width: 150px;">Replace Next</button>
+                                            <button mat-raised-button style = "height:30px; width: 150px;">Replace All </button>
+                                            
+                                        </div>
+                                </div>
+                        </mat-tab>
+                        <mat-tab label="Concordancer">
+                            <h1>Some more tab content</h1>
+                            <p>...</p>
+                        </mat-tab>
+                        <mat-tab label="Export">
+                            <h1>Some more tab content</h1>
+                            <p>...</p>
+                        </mat-tab>
+                    </mat-tab-group>
+                  </div>
+
+                  
+                  <div class = "row divbluebox">
+                    <h2 *ngIf = "flag"> section: 1 page, {{ selectedRow.type }} types, {{ selectedRow.token }} tokens</h2>
+                    <h2 *ngIf = "!flag"> Not Selected Any Item</h2>
+                  </div>
+                  <div class = "row" style = "height : 32%;">
+                      <textarea *ngIf="flag" style = "width : 100%; height:100%; outline: none;"> {{ selectedRow.fullcontent}}</textarea>
+                      <h2 *ngIf = "!flag">No Item Selected</h2>
+                  </div>
+              </div>
+
+              <div class ="col-sm-3" >
+                    <div class = "row" style = "height : 100%; margin-left: 5px;">
+                    <!-- <p-dataTable  [value]="analysisStructure" selectionMode="single" [(selection)] = "selectedAnalysisRow" (onRowSelect) = "onAnalysisTableRowSelect($event)" [style]="{'height':'780px', 'overflow':'auto'}">
+                        <p-column field="form" header="form" [style]="{'width':'40%', 'cursor':'pointer'}" [sortable]="true"></p-column>
+                        <p-column field="freq" header="freq"  [style]="{'width':'15%', 'cursor':'pointer'}" [sortable]="true"></p-column>
+                        <p-column field="total" header="total" [style]="{'width':'18%', 'cursor':'pointer'}" [sortable]="true"></p-column>
+                        <p-column field="spec" header="spec" [style]="{'width':'27%', 'cursor':'pointer'}" [sortable]="true"></p-column>
+                    </p-dataTable> -->
+                        <div class="analysislist-container mat-elevation-z9">
+                            <mat-table  [dataSource]="analysisdataSource" style = "max-height: 780px;" matSort #analysissort = "matSort">
+                        
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="form">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header > form </mat-header-cell>
+                                    <mat-cell *matCellDef="let ele"> {{ele.form}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="freq">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> freq </mat-header-cell>
+                                    <mat-cell *matCellDef="let ele" > {{ele.freq}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="total">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> total </mat-header-cell>
+                                    <mat-cell *matCellDef="let ele"> {{ele.total}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="spec">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> spec </mat-header-cell>
+                                    <mat-cell *matCellDef="let ele"> {{ele.spec}} </mat-cell>
+                                </ng-container>
+                            
+                                <mat-header-row *matHeaderRowDef="analysisColumns" style = "cursor:pointer;"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: analysisColumns;" (click) = "onAnalysisTableRowSelect(row)" [ngClass] = "{'hover':true}" style = "cursor:pointer;"></mat-row>
+                            </mat-table>
+                        </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

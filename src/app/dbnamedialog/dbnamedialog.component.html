@@ -1,0 +1,13 @@
+
+<h1 mat-dialog-title>Input the Database Name</h1>
+<mat-dialog-content>
+  <mat-form-field style = "width:100%">
+    <input matInput tabindex="1" [(ngModel)]="data.dbname">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions style = "float: right">
+  <button mat-button (click)="onYesClick()" tabindex="2">OK</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">No Thanks</button>
+</mat-dialog-actions>
